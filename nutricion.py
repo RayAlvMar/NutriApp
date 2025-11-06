@@ -38,7 +38,7 @@ def ejercicios():
 
 @app.route('/consejo')
 def consejo():
-    return render_template('Consejo.html')
+    return render_template('consejo.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

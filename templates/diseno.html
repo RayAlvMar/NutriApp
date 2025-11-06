@@ -1,45 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Diseño nutriapp{% endblock %}</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-<body>
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nutriapp ‹𝟹</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+{% block title %}Animales Exóticos{% endblock %}
 
-<nav class="navbar bg-light border-bottom border-3 rounded">
-  <div class="container-fluid">
-    <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
-      ☰
-    </button>
-    <span class="navbar-brand mb-0 h1">Nutriapp ₍^. .^₎Ⳋ</span>
-  </div>
-</nav>
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="menuLateralLabel">Menú principal</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
-  </div>
-  <div class="offcanvas-body">
-    <nav class="nav flex-column text-center">
-      <a class="nav-link text-dark" href="#">➜ Calcula tus calorías</a>
-      <a class="nav-link text-dark" href="#">➜ Calcula tu IMC</a>
-      <a class="nav-link text-dark" href="#">➜ Plan de Comidas</a>
-      <a class="nav-link text-dark" href="#">➜ Ejercicios recomendados</a>
-      <a class="nav-link text-dark" href="#">➜ Consejos del día</a>
-    </nav>
-  </div>
-</div>
+{% block content %}
 
 <div class="container mt-4 border border-3 rounded text-center p-3">
   <h3>Bienvenido a esta Nutriapp ₍^. .^₎Ⳋ</h3>
@@ -59,12 +22,4 @@
   <p>➜ Consejos del día</p>
   <p>Cada día te daremos pequeños recordatorios y mensajes motivacionales para mantenerte enfocado en tu bienestar. Desde recomendaciones sobre hidratación, descanso y autocuidado, hasta datos curiosos sobre alimentos, metabolismo y salud mental. A veces un simple consejo puede marcar la diferencia: dormir mejor, caminar más, reducir el estrés o aprender a disfrutar de una comida sin culpa. En esta sección también encontrarás frases inspiradoras, desafíos semanales y tips prácticos para aplicar en tu rutina diaria.</p>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</html>
+{% endblock %}
