@@ -1,30 +1,45 @@
 {% extends "base.html" %}
 
-{% block title %}Calculadora de Tasa Metabólica Basal (TMB){% endblock %}
+{% block title %}Planes de comida{% endblock %}
 
 {% block content %}
 <body class="bg-light">
 
-    <div class="container mt-5">
-        <div class="card shadow p-4">
+<div class="container mt-5">
+    <div class="card shadow p-4">
 
-            <h3 class="text-center mb-4">Selecciona un plan de comidas (๑ᵔ⤙ᵔ๑)</h3>
+        <h3 class="text-center mb-4">Selecciona un plan de comidas (๑ᵔ⤙ᵔ๑)</h3>
 
-            <form>
+        <form action="{{ url_for('plan') }}" method="POST">
 
-                <div class="mb-3">
-                    <select class="form-select">
-                        <option selected disabled>Elegir plan</option>
-                        <option value="deficit">Perdida de peso</option>
-                        <option value="mantenimiento">Mantenimiento</option>
-                        <option value="superavit">Ganancia muscular</option>
-                    </select>
-                </div>
+            <div class="mb-3">
+                <select class="form-select" name="plan" required>
+                    <option selected disabled>Elegir plan</option>
+                    <option value="deficit">Pérdida de peso</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                    <option value="superavit">Ganancia muscular</option>
+                </select>
+            </div>
 
-                <button type="submit" class="btn btn-dark w-100">Continuar</button>
+            <button type="submit" class="btn btn-dark w-100">Continuar</button>
+        </form>
 
-            </form>
+        {% if recetas %}
+        <hr>
+        <h4 class="text-center mt-3">Recetas sugeridas</h4>
 
-        </div>
+        <ul class="list-group mt-3">
+            {% for r in recetas %}
+            <li class="list-group-item">
+                <strong>{{ r.nombre }}</strong><br>
+                {{ r.descripcion }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
     </div>
+</div>
+
+</body>
 {% endblock %}

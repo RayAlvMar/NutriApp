@@ -3,8 +3,17 @@
 {% block title %}Consejo diario{% endblock %}
 
 {% block content %}
-<body class="text-center mt-5">
+<div class="text-center mt-5">
 
-    <h4 class="mb-4">Lo estas haciendo muy bien, continua asi! ( ദ്ദി ˙ᗜ˙ )</h4>
-    <button class="btn btn-dark">Presiona para conseguir tu consejo diario ( ˵ •̀ ᴗ •́˵)</button>
+    <h4 class="mb-4">Lo estás haciendo muy bien, continúa así! ( ദ്ദി ˙ᗜ˙ )</h4>
+
+    <h5 class="mb-4">{{ consejo }}</h5>
+
+    <form method="POST" action="{{ url_for('consejo') }}">
+        <button type="submit" class="btn btn-dark">
+            Obtener otro consejo ( ˵ •̀ ᴗ •́˵)
+        </button>
+    </form>
+
+</div>
 {% endblock %}

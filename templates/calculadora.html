@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Calculadora de Índice de Masa Corporal (IMC){% endblock %}
+{% block title %}Calculadora de IMC{% endblock %}
 
 {% block content %}
 <body class="bg-light">
@@ -8,34 +8,41 @@
     <div class="container mt-5">
         <div class="card shadow p-4">
 
-            <h3 class="text-center mb-4">Datos para tu calculo ( ◡̀_◡́)ᕤ</h3>
+            <h3 class="text-center mb-4">Datos para tu cálculo ( ◡̀_◡́)ᕤ</h3>
 
-            <form>
+            <form method="POST">
 
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <label class="form-label">Sexo</label>
-                        <select class="form-select">
+                        <select class="form-select" name="sexo">
                             <option selected disabled>Seleccionar</option>
                             <option>Masculino</option>
                             <option>Femenino</option>
                         </select>
-                        <small class="text-muted">No se puede seleccionar otro</small>
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Ingresa tu peso (kg)</label>
-                        <input type="number" class="form-control" placeholder="Ej. 65">
+                        <label class="form-label">Peso (kg)</label>
+                        <input type="number" step="0.01" name="peso" class="form-control" placeholder="Ej. 65" required>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Estatura (cm)</label>
-                        <input type="number" class="form-control" placeholder="Ej. 170">
+                        <input type="number" step="0.01" name="estatura" class="form-control" placeholder="Ej. 170" required>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-dark w-100">Continuar</button>
+
+                <button type="submit" class="btn btn-dark w-100">Calcular IMC</button>
 
             </form>
+
+            {% if imc %}
+            <div class="alert alert-info text-center mt-4">
+                <h4>Tu IMC es: <strong>{{ imc }}</strong></h4>
+                <p>Clasificación: <strong>{{ categoria }}</strong></p>
+            </div>
+            {% endif %}
 
         </div>
     </div>

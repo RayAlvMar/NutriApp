@@ -16,12 +16,23 @@
                 Plan de ejercicios
             </button>
             <ul class="dropdown-menu w-100">
-                <li><a class="dropdown-item" href="#">Ligero</a></li>
-                <li><a class="dropdown-item" href="#">Moderado</a></li>
-                <li><a class="dropdown-item" href="#">Fuerte</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('ejercicios', nivel='ligero') }}">Ligero</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('ejercicios', nivel='moderado') }}">Moderado</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('ejercicios', nivel='fuerte') }}">Fuerte</a></li>
             </ul>
         </div>
 
+        {% if ejercicios %}
+        <hr class="mt-4">
+        <h4 class="text-center mb-3">Ejercicios sugeridos:</h4>
+        <ul>
+            {% for e in ejercicios %}
+                <li>{{ e }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
 </div>
+
+</body>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Calculadora de Tasa Metabólica Basal (TMB){% endblock %}
+{% block title %}Calculadora Basal{% endblock %}
 
 {% block content %}
 <body class="bg-light">
@@ -8,54 +8,60 @@
     <div class="container mt-5">
         <div class="card shadow p-4">
 
-            <h3 class="text-center mb-4">Calculadora de Calorias ૮₍  ˶•⤙•˶ ₎ა</h3>
+            <h3 class="text-center mb-4">Calculadora Basal ૮₍ ˶•⤙•˶ ₎ა</h3>
 
-            <form>
+            <form method="POST">
 
                 <div class="row mb-3">
-
                     <div class="col-md-4">
                         <label class="form-label">Sexo</label>
-                        <select class="form-select">
+                        <select name="sexo" class="form-select" required>
                             <option selected disabled>Seleccionar</option>
-                            <option>Masculino</option>
-                            <option>Femenino</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
                         </select>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Peso (kg)</label>
-                        <input type="number" class="form-control" placeholder="Ej. 65">
+                        <input name="peso" type="number" class="form-control" required>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Estatura (cm)</label>
-                        <input type="number" class="form-control" placeholder="Ej. 170">
+                        <input name="altura" type="number" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-
                     <div class="col-md-4">
                         <label class="form-label">Edad (años)</label>
-                        <input type="number" class="form-control" placeholder="Ej. 18">
+                        <input name="edad" type="number" class="form-control" required>
                     </div>
 
                     <div class="col-md-8">
                         <label class="form-label">Nivel de actividad</label>
-                        <select class="form-select">
-                            <option>Ligero</option>
-                            <option selected>Moderado</option>
-                            <option>Fuerte</option>
+                        <select name="actividad" class="form-select">
+                            <option value="1.375">Ligero</option>
+                            <option value="1.55" selected>Moderado</option>
+                            <option value="1.725">Fuerte</option>
                         </select>
                     </div>
-
                 </div>
 
-                <button type="submit" class="btn btn-dark w-100">Continuar</button>
+                <button type="submit" class="btn btn-dark w-100">Calcular</button>
 
             </form>
 
+            {% if resultado %}
+            <div class="alert alert-success text-center mt-4">
+                TMB: <strong>{{ resultado.tmb }} kcal</strong><br>
+                Calorías diarias estimadas: <strong>{{ resultado.calorias }} kcal</strong>
+            </div>
+            {% endif %}
+
         </div>
     </div>
+
+</body>
 {% endblock %}
