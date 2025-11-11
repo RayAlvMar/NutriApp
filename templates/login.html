@@ -1,20 +1,37 @@
 {% extends "base.html" %}
-
 {% block title %}Iniciar Sesión{% endblock %}
-
 {% block content %}
-<div class="container mt-3 border border-3 rounded">
-    <h2 class="text-center mb-4 mt-4">Iniciar Sesión</h2>
-    <form method="POST" action="{{ url_for('login') }}" class="border p-4 rounded shadow-sm">
-        <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario (correo)</label>
-            <input type="text" class="form-control" id="usuario" name="usuario" required>
+<div class="container mt-5">
+    <div class="text-center">
+        <i class="bi bi-box-arrow-in-right fs-1"></i>
+        <h2>Iniciar Sesión</h2>
+    </div>
+
+    <div class="card border border-3 border-primary-subtle rounded mt-3">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('iniciar_sesion') }}">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control border border-1 border-success" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control border border-1 border-danger" id="password" name="password" required>
+                </div>
+
+                <div class="mb-3 form-check text-start">
+                    <input type="checkbox" class="form-check-input" id="recordarme" name="recordarme">
+                    <label class="form-check-label" for="recordarme">Recordarme</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Entrar</button>
+
+                <p class="mt-3 mb-0 text-center">¿No tienes cuenta?
+                    <a href="{{ url_for('registrarse') }}" class="text-decoration-none">Regístrate aquí</a>
+                </p>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Entrar</button>
-    </form>
+    </div>
 </div>
 {% endblock %}
