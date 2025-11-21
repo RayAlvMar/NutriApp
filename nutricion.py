@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 import random
 
 app = Flask(__name__)
@@ -52,21 +52,17 @@ def diseno():
         return redirect(url_for('login'))
     return render_template('diseno.html', usuario=session['usuario'])
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/search', methods=['POST'])
+@app.route('/analizador', methods=['GET', 'POST'])
 def buscar_alimento():
     alimentos = request.form.get('alimentos', '').strip()
     if not alimentos:
         flash('Por favor ingresa uno o varios alimentos.', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('diseno'))
 
     lista_alimentos = [a.strip() for a in alimentos.split(',') if a.strip()]
     if len(lista_alimentos) > 5:
         flash('Solo puedes buscar hasta 5 alimentos.', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('diseno'))
 
     resultados = []
 
@@ -97,9 +93,6 @@ def buscar_alimento():
 
     return render_template('food.html', resultados=resultados)
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 @app.route('/calculadora', methods=['GET', 'POST'])
 def calculadora():
     if 'usuario' not in session:
@@ -124,6 +117,7 @@ def calculadora():
             categoria = "Obesidad"
 
     return render_template('calculadora.html', usuario=session['usuario'], imc=imc, categoria=categoria)
+
 @app.route("/basal", methods=["GET", "POST"])
 def basal():
     resultado = None
