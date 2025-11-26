@@ -28,7 +28,7 @@ XDh9F384kRA5uYSMsL2W29HFYeRp9YvOtKYxiJlK (Hecha por USDA)
 ![Primera solicitud](<Captura de pantalla 2025-09-24 212159.png>)
 “https://api.nal.usda.gov/fdc/v1/foods/search?query=banana&api_key=XDh9F384kRA5uYSMsL2W29HFYeRp9YvOtKYxiJlK”
 Esta solicitud sirve para buscar un alimento por su nombre, en el ejemplo se usa el alimento banana, y la respuesta es una lista de en qué parte se encuentra ese alimento.
-![Segunda solicitud](image.png)
+![Segunda solicitud](imagen.png)
 “https://api.nal.usda.gov/fdc/v1/foods/list?api_key=XDh9F384kRA5uYSMsL2W29HFYeRp9YvOtKYxiJlK&pageSize=5&pageNumber=1”
 Esta solicitud sirve para traer 5 alimentos de la base de datos con su información básica como nombre, id y tipo de datos. Y se ve así la respuesta:
 ![Respuesta 1 segunda solicitud](image-1.png)

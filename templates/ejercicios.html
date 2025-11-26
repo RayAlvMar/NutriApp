@@ -5,34 +5,70 @@
 {% block content %}
 <div class="container mt-5">
     <div class="card border-3 rounded shadow-lg p-4" style="border: 3px solid #03045e;">
+        
         <h3 class="text-center mb-4">Ejercicios recomendados ᕙ( •̀ ᗜ •́ )ᕗ</h3>
 
         <div class="text-center mb-4">
-            <img src="{{ url_for('static', filename='imgs/ejercicio2.png') }}" class="img-fluid" style="max-width: 300px;" alt="Descripción">
+            <img src="{{ url_for('static', filename='imgs/ejercicio2.png') }}"
+                class="img-fluid" style="max-width: 300px;" alt="Ejercicio">
         </div>
 
-        <h4 class="text-center mb-3">Selecciona una opción</h4>
+        <form method="POST" action="{{ url_for('ejercicios') }}">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Selecciona tu nivel:</label>
+                <select class="form-select" name="nivel" required>
+                    <option disabled selected>Elegir nivel</option>
+                    <option value="ligero">Ligero</option>
+                    <option value="moderado">Moderado</option>
+                    <option value="fuerte">Fuerte</option>
+                </select>
+            </div>
 
-        <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">
-                Plan de ejercicios
-            </button>
-            <ul class="dropdown-menu w-100">
-                <li><a class="dropdown-item" href="{{ url_for('ejercicios', nivel='ligero') }}">Ligero</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('ejercicios', nivel='moderado') }}">Moderado</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('ejercicios', nivel='fuerte') }}">Fuerte</a></li>
+            <div class="mb-4">
+                <label class="form-label fw-bold">Selecciona tu sexo:</label>
+                <select class="form-select" name="sexo" required>
+                    <option disabled selected>Elegir opción</option>
+                    <option value="hombre">Hombre</option>
+                    <option value="mujer">Mujer</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-dark w-100">Mostrar ejercicios</button>
+        </form>
+
+        {% if rutinas %}
+        <hr class="mt-5">
+
+        <h4 class="text-center mb-3">
+            Rutina {{ nivel|capitalize }} - {{ sexo|capitalize }}
+        </h4>
+
+        {% for r in rutinas %}
+        <div class="card mt-4 p-3 shadow-sm">
+            <h5 class="mb-2"> {{ r.titulo }}</h5>
+
+            <ul class="mt-2">
+                {% for paso in r.detalle %}
+                <li>{{ paso }}</li>
+                {% endfor %}
             </ul>
-        </div>
 
-        {% if ejercicios %}
-        <hr class="mt-4">
-        <h4 class="text-center mb-3">Ejercicios sugeridos:</h4>
-        <ul>
-            {% for e in ejercicios %}
-                <li>{{ e }}</li>
-            {% endfor %}
-        </ul>
+            <div class="alert alert-info mt-3 p-2">
+                <strong>Consejo:</strong> {{ r.consejo }}
+            </div>
+        </div>
+        {% endfor %}
         {% endif %}
+
+        {% if not rutinas and nivel and sexo %}
+        <div class="alert alert-warning mt-4 text-center">
+            No hay rutina disponible para esta selección.
+        </div>
+        {% endif %}
+
     </div>
+    <a href="/static/imgs/ejercicioss.docx" download>
+  <button style="background-color:#0077b6;">Descargar documento con los ejercicios</button>
+</a>
 </div>
 {% endblock %}
