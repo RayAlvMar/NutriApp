@@ -8,14 +8,19 @@
 </head>
 <body style="background-color: #caf0f8;">
   
-  <nav class="navbar border-bottom border-3 rounded" style="background-color:#0077b6;">
-    <div class="container-fluid">
-      <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
-        ☰
-      </button>
-      <span class="navbar-brand mb-0 h1">Nutriapp ₍^. .^₎Ⳋ</span>
-    </div>
-  </nav>
+<nav class="navbar border-bottom border-3 rounded" style="background-color:#0077b6;">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
+      ☰
+    </button>
+    <a href="{{ url_for('perfil') }}" class="text-black text-decoration-none d-flex align-items-center">
+      <i class="bi bi-person-circle" style="font-size: 1.8rem; color: black;"></i>
+      <span class="ms-2 fw-bold" style="color: black;">Perfil</span>
+    </a>
+    <span class="navbar-brand mb-0 h1" style="color: black;">Nutriapp ₍^. .^₎Ⳋ</span>
+  </div>
+</nav>
+
 
   <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel" style="background-color: #caf0f8;">
     <div class="offcanvas-header">

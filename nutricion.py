@@ -52,6 +52,12 @@ def diseno():
         return redirect(url_for('login'))
     return render_template('diseno.html', usuario=session['usuario'])
 
+@app.route('/perfil')
+def perfil():
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
+    return render_template('perfil.html', usuario=session['usuario'])
+
 @app.route('/analizador', methods=['GET', 'POST'])
 def buscar_alimento():
     alimentos = request.form.get('alimentos', '').strip()
