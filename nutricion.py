@@ -53,11 +53,56 @@ def diseno():
         return redirect(url_for('login'))
     return render_template('diseno.html', usuario=session['usuario'])
 
-@app.route('/perfil')
+@app.route('/perfil', methods=['GET', 'POST'])
 def perfil():
     if 'usuario' not in session:
         return redirect(url_for('login'))
-    return render_template('perfil.html', usuario=session['usuario'])
+
+    email = session['usuario']
+    if email not in usuarios:
+        usuarios[email] = {}
+
+    if request.method == 'POST':
+        nombre = request.form.get('nombre', '')
+        edad = request.form.get('edad', '')
+        estatura = request.form.get('estatura', '')
+        peso = request.form.get('peso', '')
+        nivel_entrenamiento = request.form.get('nivel_entrenamiento', '')
+        objetivo = request.form.get('objetivo', '')
+
+        usuarios[email]['nombre'] = nombre
+        usuarios[email]['edad'] = edad
+        usuarios[email]['estatura'] = estatura
+        usuarios[email]['peso'] = peso
+        usuarios[email]['nivel_entrenamiento'] = nivel_entrenamiento
+        usuarios[email]['objetivo'] = objetivo
+
+        session['nombre'] = nombre
+        session['edad'] = edad
+        session['estatura'] = estatura
+        session['peso'] = peso
+        session['nivel_entrenamiento'] = nivel_entrenamiento
+        session['objetivo'] = objetivo
+
+        return render_template(
+            'perfil.html',
+            usuario=email,
+            nombre=nombre,
+            edad=edad,
+            estatura=estatura,
+            peso=peso,
+            nivel_entrenamiento=nivel_entrenamiento,
+            objetivo=objetivo)
+
+    return render_template(
+        'perfil.html',
+        usuario=email,
+        nombre=session.get('nombre', ''),
+        edad=session.get('edad', ''),
+        estatura=session.get('estatura', ''),
+        peso=session.get('peso', ''),
+        nivel_entrenamiento=session.get('nivel_entrenamiento', ''),
+        objetivo=session.get('objetivo', ''))
 
 @app.route('/analizador', methods=['GET', 'POST'])
 def analizador():
