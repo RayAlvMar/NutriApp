@@ -14,7 +14,7 @@
 <nav class="navbar bg-primary rounded-4 shadow p-3 d-flex justify-content-center align-items-center mt-3"
      style="max-width: 600px; margin: 0 auto;">
   <div class="container-fluid justify-content-center">
-    <form class="d-flex" role="search" action="{{ url_for('buscar_alimento') }}" method="POST" style="max-width: 400px; margin: 0 auto;">
+    <form class="d-flex" role="search" action="{{ url_for('analizador') }}" method="POST" style="max-width: 400px; margin: 0 auto;">
       <input class="form-control me-2" type="search" name="alimentos" placeholder="Ejemplo: apple, rice, milk..." aria-label="Search">
       <button class="btn btn-warning fw-bold" type="submit">Buscar</button>
     </form>

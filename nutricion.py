@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 import random
+import requests
 
 app = Flask(__name__)
 app.secret_key = 'secretishimo'
@@ -52,21 +53,20 @@ def diseno():
         return redirect(url_for('login'))
     return render_template('diseno.html', usuario=session['usuario'])
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/analizador', methods=['GET', 'POST'])
+def analizador():
+    if request.method == 'GET':
+        return render_template('analizador.html')
 
-@app.route('/search', methods=['POST'])
-def buscar_alimento():
     alimentos = request.form.get('alimentos', '').strip()
     if not alimentos:
         flash('Por favor ingresa uno o varios alimentos.', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('analizador'))
 
     lista_alimentos = [a.strip() for a in alimentos.split(',') if a.strip()]
     if len(lista_alimentos) > 5:
         flash('Solo puedes buscar hasta 5 alimentos.', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('analizador'))
 
     resultados = []
 
@@ -95,10 +95,7 @@ def buscar_alimento():
         except requests.exceptions.RequestException:
             resultados.append({"nombre": alimento.title(), "error": "Error de conexión"})
 
-    return render_template('food.html', resultados=resultados)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return render_template('resultados.html', resultados=resultados)
 
 @app.route('/calculadora', methods=['GET', 'POST'])
 def calculadora():
