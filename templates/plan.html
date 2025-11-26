@@ -3,12 +3,14 @@
 {% block title %}Planes de comida{% endblock %}
 
 {% block content %}
-<body class="bg-light">
-
 <div class="container mt-5">
-    <div class="card shadow p-4">
+    <div class="card border-3 rounded shadow-lg p-4" style="border: 3px solid #03045e;">
 
         <h3 class="text-center mb-4">Selecciona un plan de comidas (๑ᵔ⤙ᵔ๑)</h3>
+
+        <div class="text-center mb-4">
+        <img src="{{ url_for('static', filename='imgs/comida1.png') }}" class="img-fluid" style="max-width: 200px;" alt="Descripción">
+        </div>
 
         <form action="{{ url_for('plan') }}" method="POST">
 
@@ -40,6 +42,4 @@
 
     </div>
 </div>
-
-</body>
 {% endblock %}
