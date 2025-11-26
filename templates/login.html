@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Iniciar Sesión{% endblock %}
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-3">
     <div class="text-center">
         <i class="bi bi-box-arrow-in-right fs-1"></i>
         <h2>Iniciar Sesión</h2>
     </div>
 
-    <div class="card border border-3 border-primary-subtle rounded mt-3">
+    <div class="card border-3 rounded mt-3" style="border: 3px solid #03045e;">
         <div class="card-body">
             <form method="POST" action="{{ url_for('iniciar_sesion') }}">
                 <div class="mb-3">

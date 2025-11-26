@@ -4,11 +4,12 @@
 
 {% block content %}
 
-<div class="container mt-4 border border-3 rounded text-center p-3">
+<div class="container bg-white mt-4 rounded text-center p-3" style="border: 3px solid #03045e;">
+  <img src="{{ url_for('static', filename='imgs/bienvenido.png') }}" class="img-fluid" style="max-width: 150px;" alt="Descripción">
   <h3>Bienvenido a esta Nutriapp ₍^. .^₎Ⳋ</h3>
 </div>
 
-<div class="container mt-3 border border-3 rounded text-center p-3">
+<div class="container bg-white mt-3 border-3 rounded text-center p-3" style="border: 3px solid #03045e;">
   <h2>Un poco de esto...</h2>
   <p>En esta aplicación de nutrición podrás encontrar herramientas útiles para llevar un estilo de vida más saludable y equilibrado, adaptado a tus necesidades personales. Sabemos que cada cuerpo es distinto y que no existen fórmulas mágicas, por eso Nutriapp te acompaña paso a paso para que comprendas mejor cómo funcionan tu alimentación, tu metabolismo y tus hábitos diarios. Nuestro objetivo es que no solo mejores tu figura o tu peso, sino que te sientas mejor contigo mismo y aprendas a cuidar tu salud desde adentro.</p>
   <p>➜ Calcula tus calorías</p>
@@ -21,5 +22,6 @@
   <p>La nutrición y el movimiento van de la mano, por eso en esta sección encontrarás rutinas de ejercicios adaptadas a distintos niveles: principiantes, intermedios y avanzados. Ya sea que prefieras entrenar en casa o en un gimnasio, tendrás opciones que se ajustan a tu tiempo y condición física. Podrás descubrir los beneficios de los ejercicios cardiovasculares, la fuerza muscular, el estiramiento y la movilidad. Además, incluimos consejos para mantener una buena postura, evitar lesiones y aprovechar al máximo cada sesión. Recuerda que el ejercicio no solo moldea tu cuerpo, también mejora tu estado de ánimo y fortalece tu sistema inmunológico.</p>
   <p>➜ Consejos del día</p>
   <p>Cada día te daremos pequeños recordatorios y mensajes motivacionales para mantenerte enfocado en tu bienestar. Desde recomendaciones sobre hidratación, descanso y autocuidado, hasta datos curiosos sobre alimentos, metabolismo y salud mental. A veces un simple consejo puede marcar la diferencia: dormir mejor, caminar más, reducir el estrés o aprender a disfrutar de una comida sin culpa. En esta sección también encontrarás frases inspiradoras, desafíos semanales y tips prácticos para aplicar en tu rutina diaria.</p>
+  <img src="{{ url_for('static', filename='imgs/ejercicio3.png') }}" class="img-fluid" style="max-width: 300px;" alt="Descripción">
 </div>
 {% endblock %}

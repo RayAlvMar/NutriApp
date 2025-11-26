@@ -3,45 +3,55 @@
 {% block title %}Calculadora de Macronutrientes{% endblock %}
 
 {% block content %}
-<body class="bg-light">
+<div class="container mt-5">
+    <div class="card border-3 rounded shadow-lg p-4" style="border: 3px solid #03045e;">
 
-    <div class="container mt-5">
-        <div class="card shadow p-4">
+        <div class="row align-items-center">
 
-            <h3 class="text-center mb-4">Calcula tus Macronutrientes ( ◡̀_◡́)ᕤ</h3>
-
-            <form method="POST">
-
-                <div class="mb-3">
-                    <label class="form-label">Calorías diarias</label>
-                    <input type="number" step="1" name="calorias" class="form-control" placeholder="Ej. 2000" required>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label class="form-label">% Proteínas</label>
-                        <input type="number" step="1" name="proteina" class="form-control" placeholder="Ej. 25" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">% Grasas</label>
-                        <input type="number" step="1" name="grasa" class="form-control" placeholder="Ej. 30" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">% Carbohidratos</label>
-                        <input type="number" step="1" name="carbo" class="form-control" placeholder="Ej. 45" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-dark w-100">Calcular Macronutrientes</button>
-
-            </form>
-
-            {% if resultado %}
-            <div class="alert alert-info text-center mt-4">
-                <h4>{{ resultado }}</h4>
+            <div class="col-md-4 text-center">
+                <img src="{{ url_for('static', filename='imgs/comida3.png') }}" alt="Macronutrientes" class="img-fluid" style="max-height: 280px;">
             </div>
-            {% endif %}
+
+            <div class="col-md-8">
+
+                <h3 class="mb-4">Calcula tus Macronutrientes ( ◡̀_◡́)ᕤ</h3>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Calorías diarias</label>
+                        <input type="number" step="1" name="calorias" class="form-control" placeholder="Ej. 2000" required>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">% Proteínas</label>
+                            <input type="number" step="1" name="proteina" class="form-control" placeholder="Ej. 25" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">% Grasas</label>
+                            <input type="number" step="1" name="grasa" class="form-control" placeholder="Ej. 30" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">% Carbohidratos</label>
+                            <input type="number" step="1" name="carbo" class="form-control" placeholder="Ej. 45" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100">Calcular Macronutrientes</button>
+
+                </form>
+
+                {% if resultado %}
+                <div class="alert alert-info text-center mt-4">
+                    <h4>{{ resultado }}</h4>
+                </div>
+                {% endif %}
+
+            </div>
 
         </div>
+
     </div>
+</div>
 {% endblock %}
