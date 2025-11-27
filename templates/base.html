@@ -8,9 +8,9 @@
 </head>
 <body style="background-color: #caf0f8;">
   
-<nav class="navbar border-bottom border-3 rounded" style="background-color:#0077b6;">
+<nav class="navbar border-bottom border-3 rounded" style="background-color:#90e0ef;">
   <div class="container-fluid d-flex justify-content-between align-items-center">
-    <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
+    <button class="btn btn-outline-dark px-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
       ☰
     </button>
     <a href="{{ url_for('perfil') }}" class="text-black text-decoration-none d-flex align-items-center">
@@ -28,7 +28,7 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
     </div>
     <div class="offcanvas-body">
-      <nav class="nav flex-column text-center">
+      <nav class="nav flex-column">
         {% if session.get('usuario') %}
           <a class="nav-link text-dark" href="{{ url_for('basal') }}">➜ Calcula tus calorías</a>
           <a class="nav-link text-dark" href="{{ url_for('calculadora') }}">➜ Calcula tu IMC</a>
