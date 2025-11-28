@@ -11,7 +11,11 @@ API_KEY = "0zYsgNsAc070fgtRWyul1pOkENLlfu32g3alFq3a"
 API_URL = "https://api.nal.usda.gov/fdc/v1/foods/search"
 
 @app.route('/')
-def login():
+def home():
+    return redirect(url_for('diseno'))
+
+@app.route('/login') 
+def login(): 
     return render_template('login.html')
 
 @app.route('/registrarse', methods=['GET', 'POST'])
@@ -45,18 +49,15 @@ def iniciar_sesion():
 @app.route('/cerrar_sesion')
 def cerrar_sesion():
     session.pop('usuario', None)
-    return redirect(url_for('login'))
 
 @app.route('/diseno')
 def diseno():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
-    return render_template('diseno.html', usuario=session['usuario'])
+    usuario = session.get('usuario', None)
+    return render_template('diseno.html', usuario=usuario)
+
 
 @app.route('/perfil', methods=['GET', 'POST'])
 def perfil():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
 
     email = session['usuario']
     if email not in usuarios:
@@ -150,8 +151,6 @@ def analizador():
 
 @app.route('/calculadora', methods=['GET', 'POST'])
 def calculadora():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
 
     imc = None
     categoria = None
@@ -221,8 +220,6 @@ plan_superavit = [
 
 @app.route('/plan', methods=['GET', 'POST'])
 def plan():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
 
     if request.method == 'POST':
         plan_seleccionado = request.form.get('plan')
