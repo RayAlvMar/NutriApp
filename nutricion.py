@@ -52,8 +52,7 @@ def cerrar_sesion():
 
 @app.route('/diseno')
 def diseno():
-    usuario = session.get('usuario', None)
-    return render_template('diseno.html', usuario=usuario)
+  return render_template('diseno.html')
 
 
 @app.route('/perfil', methods=['GET', 'POST'])
@@ -170,7 +169,7 @@ def calculadora():
         else:
             categoria = "Obesidad"
 
-    return render_template('calculadora.html', usuario=session['usuario'], imc=imc, categoria=categoria)
+    return render_template('calculadora.html', imc=imc, categoria=categoria)
 
 @app.route("/basal", methods=["GET", "POST"])
 def basal():
@@ -233,14 +232,14 @@ def plan():
         else:
             plan = None
 
-        return render_template('plan.html', usuario=session['usuario'], plan=plan)
+        return render_template('plan.html', plan=plan)
 
-    return render_template('plan.html', usuario=session['usuario'], plan=None)
+    return render_template('plan.html', plan=None)
 @app.route('/articulos')
 def articulos():
     if 'usuario' not in session:
         return redirect(url_for('login'))
-    return render_template('articulos.html', usuario=session['usuario'])
+    return render_template('articulos.html')
 
 @app.route("/ejercicios", methods=["GET", "POST"])
 def ejercicios():

@@ -9,11 +9,10 @@
         <h3 class="text-center mb-4">Selecciona un plan de comidas (๑ᵔ⤙ᵔ๑)</h3>
 
         <div class="text-center mb-4">
-        <img src="{{ url_for('static', filename='imgs/comida1.png') }}" class="img-fluid" style="max-width: 200px;" alt="Descripción">
+            <img src="{{ url_for('static', filename='imgs/comida1.png') }}" class="img-fluid" style="max-width: 200px;" alt="Descripción">
         </div>
 
         <form action="{{ url_for('plan') }}" method="POST">
-
             <div class="mb-3">
                 <select class="form-select" name="plan" required>
                     <option selected disabled>Elegir plan</option>
@@ -26,12 +25,12 @@
             <button type="submit" class="btn btn-dark w-100">Continuar</button>
         </form>
 
-        {% if recetas %}
+        {% if plan %}
         <hr>
         <h4 class="text-center mt-3">Recetas sugeridas</h4>
 
         <ul class="list-group mt-3">
-            {% for r in recetas %}
+            {% for r in plan %}
             <li class="list-group-item">
                 <strong>{{ r.nombre }}</strong><br>
                 {{ r.descripcion }}
