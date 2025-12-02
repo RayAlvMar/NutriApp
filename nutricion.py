@@ -75,6 +75,9 @@ def cerrar_sesion():
 def diseno():
   return render_template('diseno.html')
 
+@app.route('/acerca')
+def acerca():
+    return render_template('acerca.html', active_page='acerca')
 
 @app.route('/perfil', methods=['GET', 'POST'])
 def perfil():

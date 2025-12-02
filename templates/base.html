@@ -40,6 +40,11 @@
           <a class="nav-link text-dark" href="{{ url_for('pesoideal') }}">➜ Calcula tu peso ideal</a>
           <a class="nav-link text-dark" href="{{ url_for('analizador') }}">➜ Analiza tus recetas</a>
           <a class="nav-link text-dark" href="{{ url_for('diseno') }}">➜ Volver al inicio</a>
+          <a class="nav-link text-dark" href="{{ url_for('acerca') }}">➜ Acerca de...</a>
+           <a href="/static/imgs/CÓMO CREAR TU CUENTA.docx" download 
+ class="btn text-white fw-bold rounded-pill" style="background-color:#0077b6;">📄 Descargar documento con el manual de usuario
+</a>
+
           <hr>
           <p class="text-success">Bienvenido, {{ session['usuario'] }}</p>
           <a class="nav-link text-danger" href="{{ url_for('cerrar_sesion') }}">✗ Cerrar sesión</a>
