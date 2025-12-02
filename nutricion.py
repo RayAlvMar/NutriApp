@@ -68,6 +68,8 @@ def iniciar_sesion():
 @app.route('/cerrar_sesion')
 def cerrar_sesion():
     session.pop('usuario', None)
+    if ('usuario') not in session:
+        return render_template('perfil.html', error="No hay ninguna sesión abierta.")
 
 @app.route('/diseno')
 def diseno():
