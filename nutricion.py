@@ -14,37 +14,56 @@ API_URL = "https://api.nal.usda.gov/fdc/v1/foods/search"
 def home():
     return redirect(url_for('diseno'))
 
-@app.route('/login') 
-def login(): 
+@app.route('/login')
+def login():
     return render_template('login.html')
 
 @app.route('/registrarse', methods=['GET', 'POST'])
 def registrarse():
     if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-        dia = request.form['dia']
-        mes = request.form['mes']
-        anio = request.form['anio']
-        verifica = request.form.get('verifica')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        dia = request.form.get('dia')
+        mes = request.form.get('mes')
+        anio = request.form.get('anio')
 
         if email in usuarios:
             return render_template('registrarse.html', error="El correo ya está registrado.")
-        else:
-            usuarios[email] = {'password': password,'dia': dia,'mes': mes,'anio': anio}
-            session['usuario'] = email
-            return redirect(url_for('diseno'))
+
+        if dia == "Día" or mes == "Mes" or anio == "Año":
+            return render_template('registrarse.html', error="Completa tu fecha de nacimiento.")
+
+        usuarios[email] = {
+            'password': (password),
+            'dia': dia,
+            'mes': mes,
+            'anio': anio,
+            'nombre': '',
+            'edad': '',
+            'estatura': '',
+            'peso': '',
+            'nivel_entrenamiento': '',
+            'objetivo': ''
+        }
+
+        session['usuario'] = email
+        return redirect(url_for('perfil'))
+
     return render_template('registrarse.html')
 
 @app.route('/iniciar_sesion', methods=['POST'])
 def iniciar_sesion():
-    email = request.form['email']
-    password = request.form['password']
-    if email in usuarios and usuarios[email]['password'] == password:
-        session['usuario'] = email
-        return redirect(url_for('diseno'))
-    else:
-        return render_template('login.html', error="Correo o contraseña incorrectos")
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if email not in usuarios:
+        return render_template('login.html', error="Correo no registrado.")
+
+    if not (usuarios[email]['password'], password):
+        return render_template('login.html', error="Contraseña incorrecta.")
+
+    session['usuario'] = email
+    return redirect(url_for('perfil'))
 
 @app.route('/cerrar_sesion')
 def cerrar_sesion():
@@ -57,42 +76,29 @@ def diseno():
 
 @app.route('/perfil', methods=['GET', 'POST'])
 def perfil():
+    email = session.get('usuario')
 
-    email = session['usuario']
     if email not in usuarios:
         usuarios[email] = {}
 
     if request.method == 'POST':
-        nombre = request.form.get('nombre', '')
-        edad = request.form.get('edad', '')
-        estatura = request.form.get('estatura', '')
-        peso = request.form.get('peso', '')
-        nivel_entrenamiento = request.form.get('nivel_entrenamiento', '')
-        objetivo = request.form.get('objetivo', '')
+        campos = ['nombre', 'edad', 'estatura', 'peso', 'nivel_entrenamiento', 'objetivo']
 
-        usuarios[email]['nombre'] = nombre
-        usuarios[email]['edad'] = edad
-        usuarios[email]['estatura'] = estatura
-        usuarios[email]['peso'] = peso
-        usuarios[email]['nivel_entrenamiento'] = nivel_entrenamiento
-        usuarios[email]['objetivo'] = objetivo
-
-        session['nombre'] = nombre
-        session['edad'] = edad
-        session['estatura'] = estatura
-        session['peso'] = peso
-        session['nivel_entrenamiento'] = nivel_entrenamiento
-        session['objetivo'] = objetivo
+        for campo in campos:
+            valor = request.form.get(campo, '')
+            usuarios[email][campo] = valor
+            session[campo] = valor
 
         return render_template(
             'perfil.html',
             usuario=email,
-            nombre=nombre,
-            edad=edad,
-            estatura=estatura,
-            peso=peso,
-            nivel_entrenamiento=nivel_entrenamiento,
-            objetivo=objetivo)
+            nombre=session.get('nombre', ''),
+            edad=session.get('edad', ''),
+            estatura=session.get('estatura', ''),
+            peso=session.get('peso', ''),
+            nivel_entrenamiento=session.get('nivel_entrenamiento', ''),
+            objetivo=session.get('objetivo', '')
+        )
 
     return render_template(
         'perfil.html',
@@ -102,7 +108,8 @@ def perfil():
         estatura=session.get('estatura', ''),
         peso=session.get('peso', ''),
         nivel_entrenamiento=session.get('nivel_entrenamiento', ''),
-        objetivo=session.get('objetivo', ''))
+        objetivo=session.get('objetivo', '')
+    )
 
 @app.route('/analizador', methods=['GET', 'POST'])
 def analizador():
@@ -237,8 +244,6 @@ def plan():
     return render_template('plan.html', plan=None)
 @app.route('/articulos')
 def articulos():
-    if 'usuario' not in session:
-        return redirect(url_for('login'))
     return render_template('articulos.html')
 
 @app.route("/ejercicios", methods=["GET", "POST"])

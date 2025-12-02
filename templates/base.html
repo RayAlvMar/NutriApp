@@ -6,11 +6,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body style="background-color: #caf0f8;">
+<body style="min-height:100vh; display:flex; flex-direction:column; background-color: #caf0f8;">
   
 <nav class="navbar border-bottom border-3 rounded" style="background-color:#90e0ef;">
   <div class="container-fluid d-flex justify-content-between align-items-center">
-    <button class="btn btn-outline-dark px-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
+    <button class="btn btn-outline-dark px-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral" style="background-color:#a7d7f0;">
       ☰
     </button>
     <a href="{{ url_for('perfil') }}" class="text-black text-decoration-none d-flex align-items-center">
@@ -53,10 +53,10 @@
     {% block content %}{% endblock %}
   </div>
 
-  <footer class="d-flex justify-content-between align-items-center px-4 py-2 mt-4 border-top" style="background-color:#0077b6; color:black;">
+<footer class="d-flex justify-content-between align-items-center px-4 py-2 mt-4 border-top"style="background-color:#0077b6; color:black; margin-top:auto;">
     <span class="fw-bold">© Derechos reservados</span>
     <span class="fw-bold">Raymundo Alvarez Martinez | Adrian Alexis Monreal Rosas</span>
-  </footer>
+</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

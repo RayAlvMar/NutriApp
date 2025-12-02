@@ -7,28 +7,27 @@
         <h2>Iniciar Sesión</h2>
     </div>
 
+    {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+    {% endif %}
+
     <div class="card border-3 rounded mt-3" style="border: 3px solid #03045e;">
         <div class="card-body">
             <form method="POST" action="{{ url_for('iniciar_sesion') }}">
                 <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control border border-1 border-success" id="email" name="email" required>
+                    <label class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control border border-1 border-success" name="email" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control border border-1 border-danger" id="password" name="password" required>
-                </div>
-
-                <div class="mb-3 form-check text-start">
-                    <input type="checkbox" class="form-check-input" id="recordarme" name="recordarme">
-                    <label class="form-check-label" for="recordarme">Recordarme</label>
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" class="form-control border border-1 border-danger" name="password" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">Entrar</button>
 
                 <p class="mt-3 mb-0 text-center">¿No tienes cuenta?
-                    <a href="{{ url_for('registrarse') }}" class="text-decoration-none">Regístrate aquí</a>
+                    <a href="{{ url_for('registrarse') }}">Regístrate aquí</a>
                 </p>
             </form>
         </div>
